@@ -1,0 +1,46 @@
+/* Phone-only non-visual fixes: keeps appearance but improves layout and touch targets */
+@media (max-width: 720px) {
+  /* Keep nav visible at the very top and account for device safe area (not visual change otherwise) */
+  nav { top: env(safe-area-inset-top, 0) !important; left: 0; right: 0; }
+  /* Keep tabs on a single row and allow horizontal scroll if they don't fit; center them visually */
+  nav ul { gap: 0.6rem !important; flex-wrap: nowrap !important; justify-content: center !important; margin: 0 6px !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  nav ul li { flex: 0 0 auto !important; }
+  nav a { padding: 8px 10px !important; font-size: 0.95rem !important; }
+
+  /* Make two-column layouts stack on small screens */
+  .two-col { grid-template-columns: 1fr !important; }
+
+  /* Ensure images scale naturally and don't get cropped too aggressively */
+  img, .interest-image, .hobby-image, .profile-image, .photo { width: 100% !important; height: auto !important; object-fit: contain !important; }
+
+  /* Make buttons bigger for fingers */
+  button, .btn, nav a { min-height: 44px !important; min-width: 44px !important; padding: 10px 12px !important; }
+
+  /* Reduce large fixed paddings so content fits better vertically and account for safe area */
+  body { padding-top: calc(64px + env(safe-area-inset-top, 0)) !important; }
+
+  /* Game-specific: increase card hit area and avoid accidental zoom/selection */
+  .card { touch-action: manipulation !important; -webkit-tap-highlight-color: transparent !important; }
+  .board { gap: 8px !important; }
+
+  /* Ensure main container has comfortable side padding and centers content on phones */
+  .container { width: 100% !important; padding-left: 12px !important; padding-right: 12px !important; }
+
+  /* Tennis / piano galleries: stack images vertically on phones so they don't get squished */
+  .piano-gallery, .tennis-gallery { display: block !important; }
+  .piano-gallery .interest-image, .tennis-gallery .interest-image { width: 100% !important; height: auto !important; display: block !important; margin-bottom: 0.6rem !important; }
+
+  /* Center text blocks that might be off-center on phones */
+  .profile-section, .interest-card, .hobby-card { text-align: left !important; margin-left: auto !important; margin-right: auto !important; }
+}
+
+/* Landscape phones: slightly larger nav spacing */
+@media (max-width: 1024px) and (orientation: landscape) {
+  nav ul { gap: 1rem !important; }
+}
+
+/* Very small phones: reduce nav padding slightly (only on very narrow screens) */
+@media (max-width: 360px) {
+  nav a { padding: 6px 8px !important; font-size: 0.88rem !important; }
+  nav ul { gap: 0.4rem !important; }
+}
