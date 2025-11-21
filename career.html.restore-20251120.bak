@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Career Interests | Danica Silcox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{ --primary-color:#FF69B4; --light-bg:#FFF5F8; --text:#4A4A4A; --card:#fff; }
+        body{font-family:Segoe UI, system-ui, -apple-system, BlinkMacSystemFont, sans-serif; background:var(--light-bg); color:var(--text); margin:0;}
+        nav{padding:1.25rem; background:rgba(255,255,255,0.9); backdrop-filter:blur(8px); box-shadow:0 2px 12px rgba(0,0,0,0.06); position:sticky; top:0; z-index:1000}
+... (backup truncated)

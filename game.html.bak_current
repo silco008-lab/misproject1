@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UMD Matching Game — Danica Silcox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{--bg:#fff5f8;--card:#fff;--accent:#FF69B4}
+    body{margin:0;font-family:Segoe UI,system-ui,Arial,sans-serif;background:var(--bg);color:#222;padding-top:72px}
+    /* Fixed top tabs */
+    nav{position:fixed;top:0;left:0;width:100%;padding:12px 18px;background:rgba(255,255,255,0.95);box-shadow:0 4px 18px rgba(0,0,0,0.08);z-index:1200}
+    nav ul{display:flex;justify-content:center;gap:1rem;list-style:none;margin:0}
+    nav a{color:var(--accent);text-decoration:none;padding:8px 12px;border-radius:8px}
+
+    .wrap{max-width:1400px;margin:0 auto;padding:1rem}
+    .header{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+    .controls{display:flex;gap:0.75rem;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:0.6rem 0.9rem;border-radius:8px;border:none;cursor:pointer}
+    .stats{font-size:0.95rem;color:#666}
+
+    /* Bigger board & cards */
+    .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:1.25rem}
+    .card{background:var(--card);border-radius:12px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 10px 28px rgba(0,0,0,0.10);transform-style:preserve-3d;transition:transform 300ms ease, box-shadow 200ms}
+    .card:hover{box-shadow:0 14px 36px rgba(0,0,0,0.14)}
+    .card.flipped{transform:rotateY(180deg)}
+    .card .front,.card .back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:12px;backface-visibility:hidden}
+    .card .front{background:linear-gradient(180deg,#fff,#fff5f0)}
+    .card .back{background:var(--accent);color:#fff;transform:rotateY(180deg);font-size:3rem}
+
+    .message{margin-top:1rem;padding:14px;border-radius:10px;background:#fff;color:#333;box-shadow:0 8px 22px rgba(0,0,0,0.05)}
+    @media (min-width:1100px){ .board{grid-template-columns:repeat(6,140px)} }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="hobbies.html">My Hobbies</a></li>
+      <li><a href="discover.html">Discover</a></li>
+      <li><a href="career.html">Career Interests</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="game.html">Game</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrap">
+    <div class="header">
+      <div>
+        <h1 style="margin:0;color:var(--accent)">UMD Matching Game</h1>
+        <p style="margin:0;color:#666">Flip cards and find matching UMD-themed icons. Match all pairs to win!</p>
+      </div>
+
+      <div class="controls">
+        <div class="stats">Moves: <span id="moves">0</span> • Time: <span id="time">0:00</span></div>
+        <button class="btn" id="restart">New Game</button>
+        <button class="btn" id="toggleMusic" aria-pressed="false">Play Music</button>
+      </div>
+    </div>
+
+    <section aria-label="game board">
+      <div id="board" class="board" role="grid"></div>
+      <div id="message" class="message" aria-live="polite">Good luck — click any two cards to begin.</div>
+    </section>
+  </main>
+
+  <script src="js/game.js"></script>
+  <script src="js/router.js"></script>
+</body>
+</html>

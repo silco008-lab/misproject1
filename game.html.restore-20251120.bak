@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Page removed</title>
+    <meta http-equiv="refresh" content="3;url=index.html">
+    <style>body{font-family:Segoe UI,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;background:#f6f4f8;margin:0} .box{max-width:700px;padding:28px;background:white;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08);text-align:center;color:#333} a{color:#7A0019;font-weight:700}</style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>Page removed</h1>
+      <p>The game page has been removed from this site.</p>
+      <p>You will be redirected to the homepage in 3 seconds, or click <a href="index.html">here</a> to go now.</p>
+    </div>
+  </body>
+</html>
+    const PIPE_WIDTH = 90;
+
+    // Audio (Web Audio simple gentle loop)
+    let audioCtx=null, musicGain=null, musicInterval=null, musicPlaying=false;
+    function initAudio(){ if(audioCtx) return; audioCtx = new (window.AudioContext || window.webkitAudioContext)(); musicGain = audioCtx.createGain(); musicGain.gain.value = 0.06; musicGain.connect(audioCtx.destination); }
+... (backup truncated)

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover | Danica Silcox</title>
+
+    <style>
+        :root {
+            --primary-color: #FF69B4;
+            --secondary-pink: #FFB6C1;
+            --light-pink: #FFF0F5;
+            --dark-pink: #DB7093;
+            --text-color: #4A4A4A;
+            --background-color: #FFF5F8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            list-style: none;
+            margin-right: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 12px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        nav a:hover { color: var(--dark-pink); }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--light-pink), #ffffff);
+            padding: 1.5rem;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.6rem;
+        }
+
+        /* Personal Experience */
+        .experience-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #ffffff, var(--light-pink));
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .experience-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.6rem;
+        }
+
+        /* ★ VIDEO CONTAINER ★ */
+        .video-wrapper {
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+            padding: 1.25rem;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #ffffff, var(--light-pink));
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .video-box {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-caption {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            background: rgba(255,255,255,0.92);
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+    </style>
+    <link rel="stylesheet" href="CSS/phone-fixes.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hobbies.html">My Hobbies</a></li>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="career.html">Career Interests</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="./game.html">Game</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+
+        <h1 class="section-title">Discover</h1>
+
+        <div class="grid-2">
+            <div class="card">
+                <h2>Why I chose University of Minnesota Duluth</h2>
+                <p>
+                    I chose the University of Minnesota Duluth for its location, the strong opportunities available 
+                    in my career field, and to be part of the tennis program. At UMD I've been able to get involved 
+                    in the community through clubs, activities, and networking with employers and faculty. 
+                    The campus offers a supportive environment and excellent opportunities for growth in both 
+                    academics and athletics.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>What I like</h2>
+                <p>
+                    I love Lake Superior — its beauty and the peaceful moments along the shore are special to me. 
+                    I also enjoy attending sporting events and cheering on teams. My grandma lives in Virginia, 
+                    Minnesota, so I’m fortunate to visit her often; family time is something I truly treasure.
+                </p>
+            </div>
+        </div>
+
+        <!-- Personal Experience -->
+        <div class="experience-section">
+            <h2>Personal Experience</h2>
+            <p>
+                My time at the University of Minnesota Duluth has been full of unforgettable moments. I’ve explored 
+                Bentleyville with friends, witnessed the northern lights, and cheered on UMD’s hockey team. I've also 
+                participated in the Green Bandanna leadership program and had the opportunity to coach tennis at the 
+                Duluth Indoor Sports Center. Duluth has given me meaningful experiences both on and off campus, and 
+                I’m deeply grateful for the community I've found here.
+            </p>
+        </div>
+
+        <!-- ★★★ VIDEO CONTAINER — INSERT YOUR VIDEO HERE ★★★ -->
+        <div class="video-wrapper">
+            <div class="video-box">
+             <!-- Using the local video file `metadata.mov` (place metadata.mp4 for better browser support).
+                 Browsers prefer MP4; MOV may not play in all browsers. If you convert to .mp4 later,
+                 add an MP4 <source> above the MOV entry. -->
+                <!-- Embedded Google Drive preview so your shared link plays inline -->
+                <div style="position:relative;padding-top:56.25%;overflow:hidden;border-radius:8px;">
+                    <iframe src="https://drive.google.com/file/d/1J-MifOlVJgiHUWX9LCioSJIvTbp1xMct/preview"
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                        allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+                </div>
+
+                <noscript>
+                    <p>Your browser does not support embedded previews. Open the video directly: <a href="https://drive.google.com/file/d/1J-MifOlVJgiHUWX9LCioSJIvTbp1xMct/view?usp=sharing" target="_blank" rel="noopener">Open video in Google Drive</a></p>
+                </noscript>
+
+                <div class="video-caption">
+                    My UMD Moments
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script src="js/nav-fix.js" defer></script>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UMD Matching Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+    <style>
+        :root{
+            --umd-maroon:#7A0019;
+            --umd-gold:#D4AF37;
+            --bg: #fff7f6;
+            --card-back: #ffffff;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,var(--bg),#fff);
+            color:#222;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        nav{padding:1rem;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);position:fixed;width:100%;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+        nav ul{display:flex;justify-content:flex-end;gap:1.5rem;list-style:none;margin-right:1.5rem}
+        nav a{text-decoration:none;color:var(--umd-maroon);font-weight:600}
+
+        .page-wrap{padding-top:80px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+
+        .game-container{
+            width:100%;
+            max-width:720px;
+            background:linear-gradient(180deg,#fff,#fff8f0);
+            border-radius:14px;
+            padding:18px;
+            box-shadow:0 12px 30px rgba(122,0,25,0.12);
+            margin:18px;
+        }
+
+        .header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand .logo{width:48px;height:48px;border-radius:8px;background:var(--umd-maroon);color:var(--umd-gold);display:flex;align-items:center;justify-content:center;font-weight:700}
+        .title{font-size:1.25rem;color:var(--umd-maroon);font-weight:700}
+
+        .controls{display:flex;gap:10px;align-items:center}
+        .btn{background:var(--umd-maroon);color:white;border:none;padding:8px 12px;border-radius:10px;font-weight:600}
+        .btn.ghost{background:transparent;color:var(--umd-maroon);border:2px solid var(--umd-maroon)}
+
+        .stats{display:flex;gap:12px;align-items:center;color:#444;font-weight:600}
+
+        .board{display:grid;gap:10px;justify-items:stretch}
+        /* responsive: 2-4 columns depending on width */
+        @media (max-width:420px){.board{grid-template-columns:repeat(3,1fr)}}
+        @media (min-width:421px) and (max-width:720px){.board{grid-template-columns:repeat(4,1fr)}}
+        @media (min-width:721px){.board{grid-template-columns:repeat(6,1fr)}}
+
+        .card{position:relative;width:100%;aspect-ratio:1/1;border-radius:10px;cursor:pointer;outline:none;border:2px solid rgba(0,0,0,0.03);transform-style:preserve-3d;transition:transform 300ms ease}
+        .card-inner{position:absolute;inset:0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;backface-visibility:hidden}
+        .card-front{background:linear-gradient(180deg,var(--card-back),#fff)}
+        .card-back{background:var(--umd-maroon);color:var(--umd-gold);transform:rotateY(180deg);font-size:1.6rem}
+        .card.flipped{transform:rotateY(180deg)}
+
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+        .footer{margin-top:12px;display:flex;justify-content:center;gap:10px;color:#666;font-size:0.95rem}
+
+        /* larger tappable targets on mobile */
+        @media (max-width:420px){.card-inner{font-size:1.8rem}}
+    </style>
+    <link rel="stylesheet" href="CSS/phone-fixes.css">
+    </head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hobbies.html">My Hobbies</a></li>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="career.html">Career Interests</a></li>
+            <li><a href="resume.html">Resume</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-wrap">
+        <div class="game-container" role="main">
+            <div class="header-row">
+                <div class="brand">
+                    <div class="logo" aria-hidden>UMD</div>
+                    <div>
+                        <div class="title">University of Minnesota Duluth — Matching Game</div>
+                        <div style="font-size:0.85rem;color:#666">Match pairs to win. Designed for phone play.</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="musicToggle" class="btn ghost" aria-pressed="false">Music</button>
+                    <button id="restart" class="btn">Restart</button>
+                </div>
+            </div>
+
+            <div class="stats" aria-live="polite">
+                <div id="moves">Moves: 0</div>
+                <div id="timer">Time: 0s</div>
+            </div>
+
+            <div id="board" class="board" aria-label="Memory cards" role="grid"></div>
+
+            <div id="status" class="footer" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <script src="js/game.js" defer></script>
+    <script>
+        // Mobile-first UMD-themed matching game
+        const EMOJIS = [
+            '🐶','🎓','🏫','🎨','🎵','🎾','📚','🍂','🌊','🔬','🧪','⚽'
+        ];
+            // Start upbeat background tune on first user interaction (user gesture)
+            let musicStarted = false;
+
+        // Use first N pairs depending on board size (we'll use 8 pairs for phones, more on wider screens)
+        function pairCountForWidth(){
+            const w = Math.max(window.innerWidth, 360);
+            if(w < 420) return 6; // 12 cards
+            if(w < 720) return 8; // 16 cards
+            return 9; // 18 cards (will add one duplicate to make even -> 18)
+        }
+
+        let movesEl = document.getElementById('moves');
+        let timerEl = document.getElementById('timer');
+        let boardEl = document.getElementById('board');
+        let statusEl = document.getElementById('status');
+    let restartBtn = document.getElementById('restart');
+
+        let cards = [];
+        let first=null, second=null;
+        let lock=false;
+        let moves=0;
+        let matches=0;
+        let timer=0, timerId=null;
+
+        // Music has been removed per user request. All audio playback and WebAudio
+        // setup was intentionally removed so the game runs silently.
+
+        function startTimer(){
+            clearInterval(timerId);
+            timer = 0; timerEl.textContent = 'Time: 0s';
+            timerId = setInterval(()=>{ timer++; timerEl.textContent = `Time: ${timer}s`; },1000);
+        }
+        function stopTimer(){ clearInterval(timerId); timerId=null }
+
+        function shuffle(a){
+            for(let i=a.length-1;i>0;i--){
+                const j = Math.floor(Math.random()*(i+1));
+                [a[i],a[j]]=[a[j],a[i]];
+            }
+            return a;
+        }
+
+        function buildBoard(){
+            boardEl.innerHTML='';
+            const pairCount = pairCountForWidth();
+            let picks = EMOJIS.slice(0, pairCount);
+            let pool = picks.concat(picks);
+            // if odd, make even
+            if(pool.length %2) pool.push(picks[0]);
+            shuffle(pool);
+
+            cards = pool.map((val, idx)=>{ return {id:idx, val, matched:false} });
+            cards.forEach(card=>{
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                btn.className='card';
+                btn.setAttribute('role','button');
+                btn.setAttribute('aria-label','Hidden card');
+                btn.setAttribute('data-id',card.id);
+                btn.innerHTML = `
+                    <div class="card-inner card-front"></div>
+                    <div class="card-inner card-back">${card.val}</div>
+                `;
+                btn.addEventListener('click', onCardClick);
+                // ensure touchend triggers click immediately on some phones
+                btn.addEventListener('touchend', (ev)=>{ ev.preventDefault(); btn.click(); }, {passive:false});
+                boardEl.appendChild(btn);
+            });
+            // reset stats
+            moves=0; matches=0; first=null; second=null; lock=false;
+            movesEl.textContent = `Moves: ${moves}`;
+            statusEl.textContent = '';
+            startTimer();
+        }
+
+        function onCardClick(e){
+            const btn = e.currentTarget;
+            if(lock) return;
+            if(btn.classList.contains('flipped')) return;
+            
+                // Start music on first card flip
+                if (!musicStarted) { window.startGameMusic && window.startGameMusic(); musicStarted = true; }
+
+            btn.classList.add('flipped');
+            if(!first){ first = btn; return }
+            if(first && !second){ second = btn; lock=true; moves++; movesEl.textContent = `Moves: ${moves}`; 
+                // compare values
+                const a = first.querySelector('.card-back').textContent.trim();
+                const b = second.querySelector('.card-back').textContent.trim();
+                if(a===b){
+                    // match
+                    first.disabled=true; second.disabled=true;
+                    matches += 1; statusEl.textContent = `Matched: ${matches}`;
+                    setTimeout(()=>{ first=null; second=null; lock=false; checkWin(); }, 400);
+                } else {
+                    // no match
+                    setTimeout(()=>{ first.classList.remove('flipped'); second.classList.remove('flipped'); first=null; second=null; lock=false; }, 700);
+                }
+            }
+        }
+
+        function checkWin(){
+            const totalPairs = Math.floor(boardEl.children.length/2);
+            if(matches >= totalPairs){
+                stopTimer();
+                statusEl.textContent = `You won! ${moves} moves — ${timer}s`;
+                // gentle confetti effect (small circles)
+                for(let i=0;i<20;i++){ createBurst(); }
+            }
+        }
+
+        function createBurst(){
+            const d = document.createElement('div');
+            d.style.position='fixed'; d.style.width='8px'; d.style.height='8px'; d.style.borderRadius='50%';
+            d.style.background = Math.random()>0.5? 'var(--umd-maroon)':'var(--umd-gold)';
+            d.style.left = (50+ (Math.random()-0.5)*60) + '%';
+            d.style.top = (40 + (Math.random()-0.5)*60) + '%';
+            d.style.zIndex=2000; d.style.opacity='0.9'; d.style.pointerEvents='none';
+            document.body.appendChild(d);
+            setTimeout(()=>{ d.style.transition='transform 900ms ease, opacity 900ms'; d.style.transform='translateY(-120px) scale(1.6)'; d.style.opacity='0'; },20);
+            setTimeout(()=>{ d.remove(); },1100);
+        }
+
+    restartBtn.addEventListener('click', ()=>{ buildBoard(); });
+
+        // start with board built
+        buildBoard();
+
+        // Audio/game auto-start logic removed — game runs silently unless the user
+        // explicitly starts audio (Play Music removed per request).
+
+        // accessibility: keyboard support
+        boardEl.addEventListener('keydown', (e)=>{
+            const active = document.activeElement;
+            if(!active || !active.classList.contains('card')) return;
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); active.click(); }
+        });
+
+        // auto-resize: rebuild on orientation change to adjust paircount
+        let resizeTimeout=null;
+        window.addEventListener('resize', ()=>{ clearTimeout(resizeTimeout); resizeTimeout=setTimeout(()=>{ buildBoard(); },400); });
+
+        // No-op: audio removed. Keep touch handlers clean.
+    </script>
+    <script src="js/nav-fix.js" defer></script>
+</body>
+</html>
+
+
+

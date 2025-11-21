@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Hobbies | Danica Silcox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+        
+        nav {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Make the nav list horizontal and match the main site's layout */
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            list-style: none;
+            margin-right: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-pink);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a:hover {
+            color: var(--dark-pink);
+        }
+
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-pink: #FFB6C1;
+            --light-pink: #FFF0F5;
+            --dark-pink: #DB7093;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-pink);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cheetah-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="%23000" opacity="0.1"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hobby-card {
+            background: white;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--primary-pink);
+            background: linear-gradient(to bottom right, white, #fff5f8);
+        }
+
+        .hobby-text {
+            position: relative;
+            padding: 2rem;
+            border: 1px solid var(--secondary-pink);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .formal-text {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            color: #333;
+            padding: 1rem;
+            border-left: 3px solid var(--primary-pink);
+            margin: 1rem 0;
+            background: rgba(255, 192, 203, 0.05);
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--dark-pink));
+        }
+
+        .hobby-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hobby-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 5px solid white;
+        }
+
+        .hobby-text {
+            padding: 1rem;
+        }
+
+        .hobby-title {
+            color: var(--dark-pink);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hobby-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .fitness-icons {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .hobby-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hobby-image {
+                height: 250px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="CSS/phone-fixes.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hobbies.html">My Hobbies</a></li>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="career.html">Career Interests</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="./game.html">Game</a></li>
+        </ul>
+    </nav>
+    <h1 class="page-title">
+        <div class="cheetah-overlay"></div>
+        My Hobbies & Passions
+    </h1>
+
+    <div class="hobby-card">
+        <div class="hobby-content">
+            <img src="Images/journaling.WEBP" alt="Journaling" class="hobby-image">
+            <div class="hobby-text">
+                <h2 class="hobby-title">Journaling</h2>
+                <p class="hobby-description">
+                    I've been journaling for the last couple of years, and it's become such a helpful part of my daily routine. It's amazing how writing things down can help clear my mind and keep me off social media. This was especially helpful when I was recovering from my ACL injury - it gave me a way to process everything I was going through. Journaling has become my go-to method for dealing with stress from school work and staying organized with my thoughts. It's like having a conversation with myself that helps me understand things better and stay focused on what's important.
+                </p>
+                <h2 class="hobby-title">Photography</h2>
+                <p class="hobby-description">
+                    Photography has been my creative outlet since I was little! I started out using my parents' old camcorder and phones to take pictures of bunnies and other wildlife. As I grew up, I got to use better cameras, like Canon cameras for school dances, and eventually got my own digital camera. What I love most about photography is that it's just pure fun - it never feels like work. I get to capture special moments and see the world in different ways through my lens. It's awesome to look back at how my photography has grown from those first wildlife shots to the pictures I take today!
+                </p>
+            </div>
+            <img src="Images/photography.JPG" alt="Photography" class="hobby-image">
+        </div>
+    </div>
+
+    <div class="hobby-card">
+        <div class="hobby-content">
+            <img src="Images/workout.jpg" alt="Fitness" class="hobby-image">
+            <div class="hobby-text">
+                <h2 class="hobby-title">Fitness & Working Out</h2>
+                <p class="hobby-description">
+                    Working out has become such an important part of my daily routine! It's not just about staying in shape - it really helps me feel great both mentally and physically. I love how exercise gives me more energy for tennis and just life in general. Whether I'm doing strength training, stretching, or cardio, staying active helps me perform better on the tennis court and keeps my mind sharp for school. It's amazing how moving your body can make such a big difference in how you feel throughout the day!
+                </p>
+            </div>
+        </div>
+        <div class="fitness-icons">
+            <i class="fas fa-dumbbell" style="position: absolute; top: 20px; right: 40px;"></i>
+            <i class="fas fa-running" style="position: absolute; bottom: 30px; right: 80px;"></i>
+            <i class="fas fa-heart" style="position: absolute; top: 50px; right: 120px;"></i>
+        </div>
+    </div>
+
+    <!-- Personal Stories moved from homepage -->
+    <section id="personal-stories" class="hobby-card" style="margin-top:2rem;">
+        <div class="hobby-content">
+            <div class="hobby-text" style="grid-column:1/-1;">
+                <h2 class="hobby-title">Personal Stories</h2>
+            </div>
+        </div>
+
+        <div class="hobby-card" style="margin:1rem;">
+            <div class="hobby-content">
+                <div class="hobby-text">
+                    <h3 class="hobby-title">My Tennis Journey</h3>
+                    <p class="hobby-description">Tennis is more than a sport to me — it's a journey that shaped who I am. Years of practice, many early mornings, and a deep love for the game led me to compete at the state championships four times. One of my proudest moments was earning third place at the Nielsen Center during my senior year. That achievement reflected perseverance, discipline, and the joy of pushing myself to grow. Tennis taught me resilience, teamwork, and how to stay focused when it matters most.</p>
+                </div>
+                <img src="Images/tennis%201.JPG" alt="Tennis" class="hobby-image">
+            </div>
+        </div>
+
+        <div class="hobby-card" style="margin:1rem;">
+            <div class="hobby-content">
+                <img src="Images/piano.JPG" alt="Piano" class="hobby-image">
+                <div class="hobby-text">
+                    <h3 class="hobby-title">Piano and Halloween Recitals</h3>
+                    <p class="hobby-description">Some of my fondest memories are from Halloween piano recitals. I would prepare pieces, dress up in a costume, and perform surrounded by autumn decorations and glowing pumpkins. Those recitals were about sharing music, having fun, and connecting with the audience — they let me express creativity both through music and playful performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add floating animation to fitness icons
+        document.querySelectorAll('.fitness-icons i').forEach((icon, index) => {
+            icon.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
+        });
+    </script>
+</body>
+</html>
+<script src="js/nav-fix.js" defer></script>
+    

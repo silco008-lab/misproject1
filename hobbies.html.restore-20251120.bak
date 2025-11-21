@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Hobbies | Danica Silcox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+        
+        nav {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            list-style: none;
+            margin-right: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-pink);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 10px;
+        }
+
+        nav a:hover {
+            color: var(--dark-pink);
+        }
+
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-pink: #FFB6C1;
+            --light-pink: #FFF0F5;
+            --dark-pink: #DB7093;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-pink);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+... (backup truncated)
