@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume | Danica Silcox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{--primary:#FF69B4;--bg:#FFF5F8;--text:#222}
+    body{font-family:Segoe UI, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;margin:0;background:var(--bg);color:var(--text)}
+... (backup truncated)

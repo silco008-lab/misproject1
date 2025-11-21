@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume | Danica Silcox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  :root{--primary:#FF69B4;--bg:#FFF5F8;--text:#222}
+  body{font-family:Segoe UI, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;margin:0;background:var(--bg);color:var(--text);padding-top:72px}
+  nav{padding:1rem;background:rgba(255,255,255,0.9);position:fixed;top:0;left:0;width:100%;z-index:1200}
+    nav ul{display:flex;justify-content:flex-end;gap:1rem;list-style:none;margin:0}
+    nav a{color:var(--primary);text-decoration:none;padding:6px 10px;border-radius:8px}
+    main{max-width:900px;margin:2rem auto;padding:1rem}
+    .resume-card{background:#fff;padding:1.5rem;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    .header{display:flex;gap:1rem;align-items:center}
+    .photo{width:120px;height:120px;border-radius:8px;object-fit:cover;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+    h1{margin:0;color:var(--primary)}
+    .meta{color:#666}
+    .section{margin-top:1rem}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    ul{margin:0 0 0 1rem}
+    .download-row{display:flex;gap:1rem;align-items:center;margin-top:1rem}
+    .btn{background:var(--primary);color:#fff;padding:0.6rem 0.9rem;border-radius:8px;text-decoration:none}
+    /* Print styles: make it clean for PDF */
+    @media print{
+      nav, .download-row { display:none !important; }
+      body{background:#fff}
+      .resume-card{box-shadow:none;border-radius:0}
+    }
+  </style>
+  <link rel="stylesheet" href="CSS/phone-fixes.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="hobbies.html">My Hobbies</a></li>
+      <li><a href="discover.html">Discover</a></li>
+      <li><a href="career.html">Career Interests</a></li>
+  <li><a href="./game.html">Game</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <article class="resume-card" id="printable-resume">
+      <div class="header">
+        <img src="Images/Resume photo.jpg" alt="Danica Silcox" class="photo">
+        <div>
+          <h1>Danica Silcox</h1>
+          <p class="meta">Sophomore at University of Minnesota Duluth • danica@example.com • Duluth, MN</p>
+        </div>
+      </div>
+
+      <div class="download-row">
+        <button class="btn" id="printPdf"><i class="fas fa-file-pdf"></i> Save as PDF / Print</button>
+        <a class="btn" id="downloadPdf" href="#">Download PDF (if available)</a>
+        <small style="color:#666">Tip: Use the "Save as PDF" option in the print dialog to create a PDF file.</small>
+      </div>
+
+      <section class="section">
+        <h2>Education</h2>
+        <p><strong>University of Minnesota Duluth</strong> — Bachelor’s program (current)</p>
+        <p class="meta">Relevant coursework: Communication, Leadership, Professional Writing, Organizational Behavior</p>
+      </section>
+
+      <section class="section two-col">
+        <div>
+          <h3>Experience</h3>
+          <p><strong>HR Intern</strong> — (Internship) — Summer
+          <br>Performed administrative HR tasks, supported applicant tracking, scheduled interviews, and assisted with candidate communication.</p>
+
+          <p><strong>Tennis Coach</strong> — Duluth Indoor Sports Center
+          <br>Coached youth players, planned practices, and coordinated schedules.</p>
+
+          <p><strong>Other Work</strong>
+          <br>Customer-facing and team roles that developed communication, punctuality, and teamwork skills.</p>
+        </div>
+
+        <div>
+          <h3>Skills</h3>
+          <ul>
+            <li>Recruiting & candidate experience</li>
+            <li>Professional communication & documentation</li>
+            <li>Microsoft Office & Google Workspace</li>
+            <li>Confidentiality & data handling</li>
+            <li>Leadership, coaching, teamwork</li>
+          </ul>
+
+          <h3>Involvement</h3>
+          <ul>
+            <li>Green Bandanna Leadership Program — UMD</li>
+            <li>Tennis team and local coaching</li>
+            <li>Community volunteer events</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3>Summary</h3>
+        <p>I bring practical HR experience from an internship, strong interpersonal skills, and a service-oriented mindset. I’m organized, responsible with confidential information, and eager to contribute to recruitment and onboarding projects that improve candidate experience and support organizational goals.</p>
+      </section>
+
+      <section class="section">
+        <h3>References</h3>
+        <p>Available upon request.</p>
+      </section>
+
+      <footer style="margin-top:1rem;color:#666;font-size:0.9rem">Last updated: November 18, 2025</footer>
+    </article>
+  </main>
+  <script>
+    // Print/save-to-PDF handler
+    document.getElementById('printPdf').addEventListener('click', function(){
+      window.print();
+    });
+
+    // If you later add a server-side PDF file, update the href of #downloadPdf
+    // For now hide the download link if there's no file
+    (function(){
+      var dl = document.getElementById('downloadPdf');
+      // change to a real path if you add a PDF to the repo
+      var pdfPath = 'downloads/Resume-Danica-Silcox.pdf';
+      fetch(pdfPath, {method: 'HEAD'}).then(function(r){ if(r.ok) dl.href = pdfPath; else dl.style.display='none'; }).catch(function(){ dl.style.display='none'; });
+    })();
+  </script>
+  
+</body>
+</html>
+<script src="js/nav-fix.js" defer></script>
